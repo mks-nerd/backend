@@ -11,6 +11,9 @@ uvicorn = "*"
 black = "*"
 mypy = "*"
 pytest = "*"
+pymongo = "*"
+anyio = "*"
+mongoengine = "*"
 
 [requires]
 python_version = "3.11"
