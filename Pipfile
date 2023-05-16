@@ -10,6 +10,7 @@ fastapi = {extras = ["all"], version = "*"}
 uvicorn = "*"
 black = "*"
 mypy = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.11"
