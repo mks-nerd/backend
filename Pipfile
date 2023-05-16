@@ -8,6 +8,8 @@ name = "pypi"
 [dev-packages]
 fastapi = {extras = ["all"], version = "*"}
 uvicorn = "*"
+black = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.11"
