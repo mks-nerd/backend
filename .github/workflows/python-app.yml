@@ -31,6 +31,12 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         black --fast .
+    - name: Start MongoDB
+      with:
+        mongodb-version: latest
+        mongodb-username: root
+        mongodb-password: this_is_password
+        mongodb-db: backend-data
     - name: Test with pytest
       run: |
         pytest
