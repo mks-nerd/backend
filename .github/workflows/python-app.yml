@@ -32,9 +32,8 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         black --fast .
     - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.8.0
       with:
-        mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-version: latest
         mongodb-username: root
         mongodb-password: this_is_password
         mongodb-db: backend-data
