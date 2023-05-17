@@ -8,7 +8,7 @@ import mongoengine  # type: ignore
 from src.models import User as UserMongo  # type: ignore
 from src.home.router import home_route
 
-MONGO_USER_ID: str = quote_plus("root")
+MONGO_USER_ID: str = quote_plus("mks")
 MONGO_USER_PASSWORD: str = quote_plus("this_is_password")
 DATABASE_NAME: str = quote_plus("backend-data")
 HOST_NAME: str = "localhost"
