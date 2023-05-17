@@ -5,7 +5,8 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel
 import mongoengine  # type: ignore
 
-from .models import User as UserMongo  # type: ignore
+from src.models import User as UserMongo  # type: ignore
+from src.home.router import home_route
 
 MONGO_USER_ID: str = quote_plus("root")
 MONGO_USER_PASSWORD: str = quote_plus("this_is_password")
@@ -14,6 +15,7 @@ HOST_NAME: str = "localhost"
 MONGO_PORT: int = 27017
 
 app = FastAPI()
+app.include_router(home_route)
 client = TestClient(app)
 
 mongoengine.connect(
