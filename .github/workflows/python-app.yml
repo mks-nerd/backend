@@ -40,4 +40,5 @@ jobs:
         mongodb-db: backend-data
     - name: Test with pytest
       run: |
-        pytest
+        coverage run -m pytest
+        coverage report
