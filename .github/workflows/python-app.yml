@@ -35,7 +35,7 @@ jobs:
       uses: supercharge/mongodb-github-action@1.8.0
       with:
         mongodb-version: latest
-        mongodb-username: root
+        mongodb-username: mks
         mongodb-password: this_is_password
         mongodb-db: backend-data
     - name: Test with pytest
