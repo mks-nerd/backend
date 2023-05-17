@@ -24,3 +24,10 @@ def test_get_home():
     )
     assert response.status_code == 200
     assert response.json() == [payload]
+
+def test_delete_home():
+    response = client.post(
+        "/home/delete_home",
+    )
+    assert response.status_code == 200
+    assert response.json() == "success"
