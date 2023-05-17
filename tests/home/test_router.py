@@ -1,4 +1,5 @@
 from src.app import client
+from ...src.app import client
 
 payload = {
     "name": "professional",
