@@ -4,7 +4,12 @@ payload = {
     "name": "professional",
     "menu": [
         {"name": "Home", "endpoint": "/home"},
+        {"name": "Learn", "endpoint": "/learn"},
         {"name": "Task", "endpoint": "/task"},
+        {"name": "Upload To SQL", "endpoint": "/upload_to_sql"},
+        {"name": "About", "endpoint": "/about"},
+        {"name": "Login", "endpoint": "/login"},
+        {"name": "Logout", "endpoint": "/logout"},
     ],
     "about": """Hi This is Mohan Sahu,\n
     I'm a Data Analyst by profession and 
