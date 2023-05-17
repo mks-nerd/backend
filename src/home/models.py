@@ -9,3 +9,6 @@ class Menu(mongoengine.EmbeddedDocument):
 class HomePage(mongoengine.Document):
     name = mongoengine.StringField(required=True)
     menu = mongoengine.ListField(mongoengine.EmbeddedDocumentField(Menu))
+    about = mongoengine.StringField(required=True)
+    skills = mongoengine.ListField(mongoengine.StringField())
+    hobbies = mongoengine.ListField(mongoengine.StringField())

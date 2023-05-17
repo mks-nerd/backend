@@ -1,18 +1,8 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
+
 
 from .models import HomePage
-
-
-class MenuSchema(BaseModel):
-    name: str
-    endpoint: str
-
-
-class HomePageSchema(BaseModel):
-    name: str
-    menu: list[MenuSchema]
-
+from .schema import HomePageSchema
 
 home_route = APIRouter(prefix="/home")
 
