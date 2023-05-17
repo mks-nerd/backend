@@ -1,4 +1,4 @@
-from ...src.app import client
+from src.app import client
 
 payload = {
     "name": "professional",
@@ -17,13 +17,15 @@ def test_add_home():
     assert response.status_code == 200
     assert response.json() == payload
 
+
 def test_get_home():
     response = client.get(
         "/home/get_home",
-        params={"home_name":"professional"},
+        params={"home_name": "professional"},
     )
     assert response.status_code == 200
     assert response.json() == [payload]
+
 
 def test_delete_home():
     response = client.post(

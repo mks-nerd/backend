@@ -5,8 +5,8 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel
 import mongoengine  # type: ignore
 
-from ..src.models import User as UserMongo  # type: ignore
-from ..src.home.router import home_route
+from src.models import User as UserMongo  # type: ignore
+from src.home.router import home_route
 
 MONGO_USER_ID: str = quote_plus("root")
 MONGO_USER_PASSWORD: str = quote_plus("this_is_password")

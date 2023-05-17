@@ -31,6 +31,7 @@ def add_home(home: HomePageSchema):
     HomePage(**home.dict()).save()
     return home
 
+
 @home_route.post("/delete_home")
 def delete_home():
     HomePage.objects.delete()
