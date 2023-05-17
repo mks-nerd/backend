@@ -42,6 +42,5 @@ jobs:
         mongodb-password: this_is_password
         mongodb-db: backend-data
     - name: Test with pytest
-      uses: VaultVulp/action-pipenv@v2.0.1
       run: |
         pytest
