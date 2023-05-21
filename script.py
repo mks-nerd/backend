@@ -53,16 +53,16 @@ def run_and_test_app() -> bool:
     start_command_prefix: list[str] = [
         "docker-compose",
         "-f",
-        "docker-compose-mongo.yml",
+        "docker/docker-compose-mongo.yml",
         "-f",
-        "docker-compose-postgres.yml",
+        "docker/docker-compose-postgres.yml",
         "-f",
-        "docker-compose-web.yml",
+        "docker/docker-compose-web.yml",
     ]
     test_command_prefix: list[str] = [
         "docker-compose",
         "-f",
-        "docker-compose-mongo.yml",
+        "docker/docker-compose-mongo.yml",
     ]
 
     start_command_suffix: list[str] = ["up", "-d"]
