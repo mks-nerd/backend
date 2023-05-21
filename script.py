@@ -68,36 +68,32 @@ def run_and_test_app() -> bool:
     test_start_command: list[str] = test_command_prefix + start_command_suffix
     test_stop_command: list[str] = test_command_prefix + stop_command_suffix
 
-    def _stop_all() -> None:
-        result.append(_stop(command=stop_command))
-        result.append(_stop(command=test_stop_command))
-
     def _test_all() -> None:
-        _stop_all()
+        result.append(_stop(command=test_stop_command))
         result.append(_start(command=test_start_command))
         result.append(_test())
+        result.append(_stop(command=test_stop_command))
 
     match action:
         case "start":
             result.append(_start(command=start_command))
         case "restart":
-            _stop_all()
+            result.append(_stop(command=stop_command))
             result.append((_start(command=start_command)))
         case "test":
             _test_all()
-            result.append(_stop(command=test_stop_command))
         case "test and start":
             _test_all()
-            result.append(_stop(command=test_stop_command))
             result.append(_start(command=start_command))
         case "test and restart":
             _test_all()
-            _stop_all()
+            result.append(_stop(command=stop_command))
             result.append(_start(command=start_command))
         case "check":
             result.append(_check())
         case "stop":
-            _stop_all()
+            result.append(_stop(command=stop_command))
+            result.append(_stop(command=test_stop_command))
         case _:
             print("Please pass a valid argument")
             result.append(False)
