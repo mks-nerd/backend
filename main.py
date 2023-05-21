@@ -1,8 +1,8 @@
 from urllib.parse import quote_plus
 
+import mongoengine  # type: ignore
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-import mongoengine  # type: ignore
 
 from src import auth, home
 

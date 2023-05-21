@@ -9,8 +9,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: mks
       MONGO_INITDB_ROOT_PASSWORD: this_is_password
-#    volumes:
-#      - ./data/mongodb:/data/db
+  #    volumes:
+  #      - ./data/mongodb:/data/db
   postgres:
     image: postgres:latest
     restart: always
@@ -19,5 +19,9 @@ services:
     environment:
       - POSTGRES_USER=mks
       - POSTGRES_PASSWORD=this_is_password
-#    volumes:
-#      - ./data/postgres:/var/lib/postgresql/data
+  #    volumes:
+  #      - ./data/postgres:/var/lib/postgresql/data
+  web:
+    build: .
+    ports:
+      - "8000:8000"

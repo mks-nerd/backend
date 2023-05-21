@@ -8,7 +8,7 @@ home_route = APIRouter(prefix="/home")
 
 
 @home_route.get("/get_home")
-def get_home(home_name: str):
+async def get_home(home_name: str):
     data = [
         HomePageSchema(**obj.to_mongo()).dict()
         for obj in HomePage.objects(name=home_name)
@@ -17,7 +17,7 @@ def get_home(home_name: str):
 
 
 @home_route.post("/add_home")
-def add_home(home: HomePageSchema):
+async def add_home(home: HomePageSchema):
     HomePage(**home.dict()).save()
     return home
 
