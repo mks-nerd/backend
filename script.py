@@ -3,8 +3,13 @@ def run_and_test_app() -> bool:
 
     result: list[bool] = []
     action: str = input(
-        "actions = start | restart | test | test and start | test and restart | check | stop\n> "
+        "actions = start | restart | test | test and start | test and restart | check | stop | --build\n> "
     )
+    action: list[str] = action.split(" --")
+    build: bool = False
+    if action[-1] == "build":
+        build = True
+    action = action[0]
 
     def _check() -> bool:
         try:
@@ -60,7 +65,10 @@ def run_and_test_app() -> bool:
         "docker-compose-mongo.yml",
     ]
 
-    start_command_suffix: list[str] = ["up", "-d", "--build"]
+    start_command_suffix: list[str] = ["up", "-d"]
+    if build:
+        start_command_suffix.append("--build")
+
     stop_command_suffix: list[str] = ["down"]
 
     start_command: list[str] = start_command_prefix + start_command_suffix
