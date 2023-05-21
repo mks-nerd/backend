@@ -5,11 +5,11 @@ def run_and_test_app() -> bool:
     action: str = input(
         "actions = start | restart | test | test and start | test and restart | check | stop | --build\n> "
     )
-    action: list[str] = action.split(" --")
+
     build: bool = False
-    if action[-1] == "build":
+    if action.endswith("--build"):
         build = True
-    action = action[0]
+        action = action.split(" --")[0]
 
     def _check() -> bool:
         try:
