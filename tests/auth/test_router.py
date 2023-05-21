@@ -1,5 +1,4 @@
-from src.app import client
-
+from main import client
 
 payload = {
     "first_name": "Mohan",
@@ -9,15 +8,9 @@ payload = {
 }
 
 
-def test_greet():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"msg": "hello"}
-
-
 def test_add_user():
     response = client.post(
-        "/add_user",
+        "/auth/add_user",
         json=payload,
     )
     assert response.status_code == 200
@@ -26,7 +19,7 @@ def test_add_user():
 
 def test_remove_user():
     response = client.post(
-        "/remove_user",
+        "/auth/remove_user",
         json=payload,
     )
     assert response.status_code == 200
