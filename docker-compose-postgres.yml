@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=mks
+      - POSTGRES_PASSWORD=this_is_password
+  #    volumes:
+  #      - ./data/postgres:/var/lib/postgresql/data
