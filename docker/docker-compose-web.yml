@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   web:
-    build: .
+    build: ../
     volumes:
-      - .:/backend
+      - ../:/backend
     ports:
       - "8000:8000"
