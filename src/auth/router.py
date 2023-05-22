@@ -8,7 +8,6 @@ auth_route = APIRouter(prefix="/auth")
 
 @auth_route.post("/add_user")
 async def add_user(user: UserSchema):
-    # return dict(user)
     User(**dict(user)).save()
     return user
 

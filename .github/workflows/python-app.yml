@@ -37,7 +37,7 @@ jobs:
           mongodb-version: latest
           mongodb-username: mks
           mongodb-password: this_is_password
-          mongodb-db: backend-data
+          mongodb-db: backend_data
           mongodb-port: 27018
       - name: Test with pytest
         run: |

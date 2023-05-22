@@ -13,4 +13,4 @@ class HomePage(mongoengine.Document):
     skills = mongoengine.ListField(mongoengine.StringField())
     hobbies = mongoengine.ListField(mongoengine.StringField())
 
-    meta = {"db_alias": "backend-data"}
+    meta = {"db_alias": "backend_data"}

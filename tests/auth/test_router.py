@@ -1,6 +1,9 @@
-from tests import client
+from fastapi.testclient import TestClient
 
-payload = {
+from main import app
+
+client: TestClient = TestClient(app)
+payload: dict = {
     "first_name": "Mohan",
     "last_name": "Sahu",
     "age": 28,
