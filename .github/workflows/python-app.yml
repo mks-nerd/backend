@@ -38,7 +38,7 @@ jobs:
           mongodb-username: mks
           mongodb-password: this_is_password
           mongodb-db: backend_data
-          mongodb-port: 27018
+          mongodb-port: 27017
       - name: Test with pytest
         run: |
           coverage run -m pytest
