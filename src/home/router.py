@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 
-
 from .models import HomePage
 from .schema import HomePageSchema
 
