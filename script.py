@@ -5,7 +5,6 @@ def run_and_test_app() -> bool:
     action: str = input(
         "actions = start | restart | test | test and start | test and restart | check | stop | --build\n> "
     )
-
     build: bool = False
     if action.endswith("--build"):
         build = True
@@ -31,7 +30,12 @@ def run_and_test_app() -> bool:
             return False
         return True
 
-    def _start(command: list[str]) -> bool:
+    def _start(command: list[str], test: bool = False) -> bool:
+        if test:
+            command = command + ["mongodb_test"]
+        else:
+            command = command + ["mongodb", "postgres", "web"]
+
         try:
             _check()
             call(command)
@@ -40,9 +44,16 @@ def run_and_test_app() -> bool:
             return False
         return True
 
-    def _stop(command: list[str]) -> bool:
+    def _stop(test: bool = False) -> bool:
         try:
-            call(command)
+            if test:
+                run(
+                    ["docker-compose", "rm", "-s", "-v", "mongodb_test"],
+                    input="y",
+                    encoding="ascii",
+                )
+            else:
+                call(["docker-compose", "down"])
             run(["docker", "container", "prune"], input="y", encoding="ascii")
             run(["docker", "image", "prune"], input="y", encoding="ascii")
         except Exception as e:
@@ -50,43 +61,20 @@ def run_and_test_app() -> bool:
             return False
         return True
 
-    start_command_prefix: list[str] = [
-        "docker-compose",
-        "-f",
-        "docker/docker-compose-mongo.yml",
-        "-f",
-        "docker/docker-compose-postgres.yml",
-        "-f",
-        "docker/docker-compose-web.yml",
-    ]
-    test_command_prefix: list[str] = [
-        "docker-compose",
-        "-f",
-        "docker/docker-compose-mongo.yml",
-    ]
-
-    start_command_suffix: list[str] = ["up", "-d"]
-    if build:
-        start_command_suffix.append("--build")
-
-    stop_command_suffix: list[str] = ["down"]
-
-    start_command: list[str] = start_command_prefix + start_command_suffix
-    stop_command: list[str] = start_command_prefix + stop_command_suffix
-    test_start_command: list[str] = test_command_prefix + start_command_suffix
-    test_stop_command: list[str] = test_command_prefix + stop_command_suffix
+    start_command: list[str] = ["docker-compose", "up", "-d"]
+    start_command.append("--build") if build else start_command
 
     def _test_all() -> None:
-        result.append(_stop(command=test_stop_command))
-        result.append(_start(command=test_start_command))
+        result.append(_stop(test=True))
+        result.append(_start(command=start_command, test=True))
         result.append(_test())
-        result.append(_stop(command=test_stop_command))
+        result.append(_stop(test=True))
 
     match action:
         case "start":
             result.append(_start(command=start_command))
         case "restart":
-            result.append(_stop(command=stop_command))
+            result.append(_stop())
             result.append((_start(command=start_command)))
         case "test":
             _test_all()
@@ -95,13 +83,12 @@ def run_and_test_app() -> bool:
             result.append(_start(command=start_command))
         case "test and restart":
             _test_all()
-            result.append(_stop(command=stop_command))
+            _stop()
             result.append(_start(command=start_command))
         case "check":
             result.append(_check())
         case "stop":
-            result.append(_stop(command=stop_command))
-            result.append(_stop(command=test_stop_command))
+            result.append(_stop())
         case _:
             print("Please pass a valid argument")
             result.append(False)

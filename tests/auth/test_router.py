@@ -1,4 +1,4 @@
-from main import client
+from tests import client
 
 payload = {
     "first_name": "Mohan",
