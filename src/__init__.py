@@ -2,14 +2,17 @@ from urllib.parse import quote_plus
 
 import mongoengine  # type: ignore
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 
+import src.home.models
 from src import auth, home
 
 
-def create_app() -> FastAPI:
+def create_app() -> tuple[FastAPI, TestClient]:
     app = FastAPI(title="mks-api", version="0.1")
     app.include_router(auth.router.auth_route)
     app.include_router(home.router.home_route)
+    client: TestClient = TestClient(app)
 
     MONGODB_USER_NAME: str = quote_plus("mks")
     MONGODB_USER_PASSWORD: str = quote_plus("this_is_password")
@@ -28,4 +31,4 @@ def create_app() -> FastAPI:
         uuidRepresentation="standard",
         alias="backend_data",
     )
-    return app
+    return app, client
