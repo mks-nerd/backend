@@ -1,6 +1,6 @@
-from tests import client
+from main import client
 
-payload = {
+payload: dict = {
     "name": "professional",
     "menu": [
         {"name": "Home", "endpoint": "/home"},

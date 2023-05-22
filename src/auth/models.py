@@ -7,4 +7,4 @@ class User(mongoengine.Document):
     age = mongoengine.IntField(required=True)
     likes = mongoengine.ListField(required=True)
 
-    meta = {"db_alias": "backend-data"}
+    meta = {"db_alias": "backend_data"}

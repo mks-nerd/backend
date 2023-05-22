@@ -1,16 +1,6 @@
 version: '3.8'
 
 services:
-  mongodb_test:
-    image: mongo:latest
-    restart: always
-    ports:
-      - "27018:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mks
-      MONGO_INITDB_ROOT_PASSWORD: this_is_password
-  #    volumes:
-  #      - ./data/mongodb:/data/db
   mongodb:
     image: mongo:latest
     restart: always

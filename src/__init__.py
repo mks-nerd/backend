@@ -4,20 +4,21 @@ import mongoengine  # type: ignore
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+import src.home.models
 from src import auth, home
 
 
-def create_app(test: bool = True) -> tuple[FastAPI, TestClient]:
+def create_app() -> tuple[FastAPI, TestClient]:
     app = FastAPI(title="mks-api", version="0.1")
     app.include_router(auth.router.auth_route)
     app.include_router(home.router.home_route)
-    client = TestClient(app)
+    client: TestClient = TestClient(app)
 
     MONGODB_USER_NAME: str = quote_plus("mks")
     MONGODB_USER_PASSWORD: str = quote_plus("this_is_password")
-    MONGODB_BACKEND_DATABASE_NAME: str = quote_plus("backend-data")
+    MONGODB_BACKEND_DATABASE_NAME: str = quote_plus("backend_data")
     MONGODB_HOST_NAME: str = "localhost"
-    MONGODB_PORT: int = 27018 if test else 27017
+    MONGODB_PORT: int = 27017
     MONGODB_AUTHENTICATION_SOURCE: str = "admin"
 
     mongoengine.connect(
@@ -28,6 +29,6 @@ def create_app(test: bool = True) -> tuple[FastAPI, TestClient]:
         password=MONGODB_USER_PASSWORD,
         authentication_source=MONGODB_AUTHENTICATION_SOURCE,
         uuidRepresentation="standard",
-        alias="backend-data",
+        alias="backend_data",
     )
     return app, client

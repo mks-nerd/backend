@@ -1,6 +1,6 @@
-from tests import client
+from main import client
 
-payload = {
+payload: dict = {
     "first_name": "Mohan",
     "last_name": "Sahu",
     "age": 28,
