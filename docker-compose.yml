@@ -4,6 +4,7 @@ services:
   mongodb:
     image: mongo:latest
     restart: always
+    container_name: mongo
     ports:
       - "27017:27017"
     environment:
@@ -14,6 +15,7 @@ services:
   postgres:
     image: postgres:latest
     restart: always
+    container_name: postgres
     ports:
       - "5432:5432"
     environment:
@@ -26,5 +28,6 @@ services:
     volumes:
       - .:/backend
     restart: always
+    container_name: backend
     ports:
       - "8000:8000"
