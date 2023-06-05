@@ -12,6 +12,17 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: this_is_password
   #    volumes:
   #      - ./data/mongodb:/data/db
+  mongodb_test:
+    image: mongo:latest
+    restart: always
+    container_name: mongo_test
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mks
+      MONGO_INITDB_ROOT_PASSWORD: this_is_password
+  #    volumes:
+  #      - ./data/mongodb:/data/db
   postgres:
     image: postgres:latest
     restart: always

@@ -32,7 +32,7 @@ def run_and_test_app() -> bool:
 
     def _start(command: list[str], test: bool = False) -> bool:
         if test:
-            command = command + ["mongodb"]
+            command = command + ["mongodb_test"]
         else:
             command = command + ["mongodb", "postgres", "web"]
 
@@ -48,7 +48,7 @@ def run_and_test_app() -> bool:
         try:
             if test:
                 run(
-                    ["docker-compose", "rm", "-s", "-v", "mongodb"],
+                    ["docker-compose", "rm", "-s", "-v", "mongodb_test"],
                     input="y",
                     encoding="ascii",
                 )
