@@ -8,7 +8,9 @@ import src.home.models
 from src import auth, home
 
 
-def create_app(mongodb_host_name: str = "mongo") -> tuple[FastAPI, TestClient]:
+def create_app(
+    mongodb_host_name: str = "mongo", mongodb_port: int = 27017, test_mode: bool = False
+) -> tuple[FastAPI, TestClient]:
     app = FastAPI(title="mks-api", version="0.1")
     app.include_router(auth.router.auth_route)
     app.include_router(home.router.home_route)
@@ -18,7 +20,7 @@ def create_app(mongodb_host_name: str = "mongo") -> tuple[FastAPI, TestClient]:
     MONGODB_USER_PASSWORD: str = quote_plus("this_is_password")
     MONGODB_BACKEND_DATABASE_NAME: str = quote_plus("backend_data")
     MONGODB_HOST_NAME: str = mongodb_host_name
-    MONGODB_PORT: int = 27017
+    MONGODB_PORT: int = mongodb_port
     MONGODB_AUTHENTICATION_SOURCE: str = "admin"
 
     mongoengine.connect(
@@ -31,4 +33,5 @@ def create_app(mongodb_host_name: str = "mongo") -> tuple[FastAPI, TestClient]:
         uuidRepresentation="standard",
         alias="backend_data",
     )
+
     return app, client

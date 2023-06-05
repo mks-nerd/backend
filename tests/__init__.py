@@ -1,3 +1,5 @@
 from src import create_app
 
-_app, client = create_app(mongodb_host_name="localhost")
+app, client = create_app(
+    mongodb_host_name="localhost", mongodb_port=27018, test_mode=True
+)
