@@ -4,19 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-anyio = "*"
-pymongo = "*"
-tomli = "*"
-exceptiongroup = "*"
 
 [dev-packages]
-fastapi = {extras = ["all"], version = "*"}
+fastapi = { extras = ["all"], version = "*" }
 uvicorn = "*"
 black = "*"
 mypy = "*"
 pytest = "*"
 mongoengine = "*"
 coverage = "*"
+anyio = "*"
+pymongo = "*"
+tomli = "*"
+exceptiongroup = "*"
+pylint = { extras = ["spelling"], version = "*" }
+ruff = "*"
 
 [requires]
 python_version = "3.11"

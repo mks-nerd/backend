@@ -9,7 +9,7 @@ from src import auth, home
 
 
 def create_app(
-    mongodb_host_name: str = "mongo", mongodb_port: int = 27017, test_mode: bool = False
+    mongodb_host_name: str = "mongo", mongodb_port: int = 27017
 ) -> tuple[FastAPI, TestClient]:
     app = FastAPI(title="mks-api", version="0.1")
     app.include_router(auth.router.auth_route)
