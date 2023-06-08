@@ -3,7 +3,7 @@ def run_and_test_app() -> bool:
 
     result: list[bool] = []
     action: str = input(
-        "actions = start | restart | test | test and start | test and restart | check | stop | --build\n> "
+        "start | restart | test | test and start | test and restart | check | stop | --build\n> "
     )
     build: bool = False
     if action.endswith("--build"):
