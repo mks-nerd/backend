@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 import src.home.models
-from src import auth, home
+from src import auth, home, lms
 
 
 def create_app(
@@ -14,6 +14,8 @@ def create_app(
     app = FastAPI(title="mks-api", version="0.1")
     app.include_router(auth.router.auth_route)
     app.include_router(home.router.home_route)
+    # new convention
+    app.include_router(lms.router.router)
     client: TestClient = TestClient(app)
 
     MONGODB_USER_NAME: str = quote_plus("mks")
